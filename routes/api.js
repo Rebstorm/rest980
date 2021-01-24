@@ -4,6 +4,7 @@ var express = require('express');
 var router = express.Router();
 var config = require('config');
 var dorita980 = require('dorita980');
+const cors = require('cors');
 
 var blid = process.env.BLID || config.blid;
 var password = process.env.PASSWORD || config.password;
@@ -52,6 +53,7 @@ router.get('/status/mission', function (req, res, next) {
 
 var missingInFirmw2 = ['setTime', 'setPtime'];
 
+router.use(cors());
 router.get('/local/action/start', map2dorita('local', 'start'));
 router.get('/local/action/stop', map2dorita('local', 'stop'));
 router.get('/local/action/pause', map2dorita('local', 'pause'));
